@@ -37,6 +37,6 @@ def query():
     result = process_query(query)
     return render_template(
         "query.html",
-        query = query,
-        result = result,
+        query=query,
+        result=result,
     )
