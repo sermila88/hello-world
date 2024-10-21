@@ -22,3 +22,19 @@ def submit():
         age1=input_age1,
         age2=input_age2,
     )
+
+
+def process_query(query):
+    if query.lower() == "dinosaurs":
+        return "Dinosaurs ruled the Earth 200 million years ago"
+    else:
+        return "Unknown"
+
+@app.route("/query")
+def query():
+    query = request.args.get('q')
+    process_query(query)
+
+
+
+
