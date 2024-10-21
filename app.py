@@ -30,11 +30,8 @@ def process_query(query):
     else:
         return "Unknown"
 
+
 @app.route("/query")
 def query():
-    query = request.args.get('q')
+    query = request.args.get("q")
     process_query(query)
-
-
-
-
