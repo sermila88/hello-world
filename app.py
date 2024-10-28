@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request
-import numpy as np
-import re
 
 app = Flask(__name__)
 
@@ -32,7 +30,7 @@ def process_query(query):
     if "your name" in query.lower():
         return "Sermila and Rob"
     if "plus" in query.lower():
-        num_list = [int(word) for word in string.spliy() if word.isdigit()]
+        num_list = [int(word) for word in query.split() if word.isdigit()]
         return sum(num_list)
     else:
         return "Unknown"
