@@ -39,6 +39,8 @@ def process_query(query):
         return "Sermila and Rob"
     if "plus" in query.lower():
         return str(sum([int(s) for s in re.findall(r"\d+", query)]))
+    if "multiplied" in query.lower():
+        return str(product([int(s) for s in re.findall(r"\d+", query)]))
     else:
         return "Unknown"
 
