@@ -27,6 +27,8 @@ def submit():
 def process_query(query):
     if query.lower() == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
+    if "your name" in query.lower():
+        return "Sermila and Rob"
     else:
         return "Unknown"
 
@@ -35,8 +37,4 @@ def process_query(query):
 def query():
     query = request.args.get("q")
     result = process_query(query)
-    return render_template(
-        "query.html",
-        query=query,
-        result=result,
-    )
+    return result
