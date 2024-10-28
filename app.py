@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
 
 
@@ -24,15 +25,20 @@ def submit():
     )
 
 
+def product(ints):
+    result = 1
+    for i in ints:
+        result *= i
+    return result
+
+
 def process_query(query):
     if query.lower() == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
     if "your name" in query.lower():
         return "Sermila and Rob"
     if "plus" in query.lower():
-        words = query.split()
-        num_list = [int(word) for word in words if word.isdigit()]
-        return str(sum(num_list))
+        return str(sum([int(s) for s in re.findall(r"\d+", query)]))
     else:
         return "Unknown"
 
