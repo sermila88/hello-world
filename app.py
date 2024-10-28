@@ -40,7 +40,9 @@ def process_query(query):
     if "plus" in query.lower():
         return str(sum([int(s) for s in re.findall(r"\d+", query)]))
     if "multiplied" in query.lower():
-        return str(product([int(s) for s in re.findall(r"\d+", query)]))
+        numbers = [int(s) for s in re.findall(r"\d+", query)]
+        minus = numbers[0] - numbers[1]
+        return str(minus)
     else:
         return "Unknown"
 
