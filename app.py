@@ -30,7 +30,7 @@ def process_query(query):
     if "your name" in query.lower():
         return "Sermila and Rob"
     if "plus" in query.lower():
-        words = query.split
+        words = query.split()
         num_list = [int(word) for word in words if word.isdigit()]
         return str(sum(num_list))
     else:
