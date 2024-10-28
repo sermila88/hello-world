@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import re
+from sympy import isprime
 
 app = Flask(__name__)
 
@@ -49,6 +50,10 @@ def process_query(query):
         numbers = [int(s) for s in re.findall(r"\d+", query)]
         result = pow(numbers[0], numbers[1])
         return str(result)
+    if "prime" in query.lower():
+        numbers = [int(s) for s in re.findall(r"\d+", query)]
+        prime_nums = [int(number) for number in numbers if isprime(number)]
+        return str(prime_nums)
     else:
         return "Unknown"
 
