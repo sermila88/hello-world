@@ -30,9 +30,7 @@ def process_query(query):
     if "your name" in query.lower():
         return "Sermila and Rob"
     if "plus" in query.lower():
-        first = query[8] + query[9]
-        second = query[16] + query[17]
-        return int(first) + int(second)
+        return query
     else:
         return "Unknown"
 
