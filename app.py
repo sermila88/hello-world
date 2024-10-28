@@ -45,6 +45,10 @@ def process_query(query):
         numbers = [int(s) for s in re.findall(r"\d+", query)]
         minus = numbers[0] - numbers[1]
         return str(minus)
+    if "power" in query.lower():
+        numbers = [int(s) for s in re.findall(r"\d+", query)]
+        result = pow(numbers[0], numbers[1])
+        return str(result)
     else:
         return "Unknown"
 

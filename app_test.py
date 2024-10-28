@@ -9,7 +9,3 @@ def test_knows_about_dinosaurs():
 
 def test_does_not_know_about_asteroids():
     assert process_query("asteroids") == "Unknown"
-
-
-def test_if_two_nums_are_returned():
-    assert process_query("What is 92 plus 48?") == 2
