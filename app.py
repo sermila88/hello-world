@@ -76,7 +76,7 @@ def submit_username():
     input_username = request.form.get("name")
     url = "https://api.github.com/users/" + input_username + "/repos"
 
-    data = {}
+    data = []
 
     response = requests.get(url)
     if response.status_code == 200:
@@ -84,7 +84,6 @@ def submit_username():
         for repo in repos:
             fullname = repo["full_name"]
             updated_at = repo["updated_at"]
-            data["fullname"] = fullname
-            data["updated_at"] = updated_at
+            data.append({"fullname": fullname, "updated_at": updated_at})
         return render_template("repos.html", data=data)
     return "error"
