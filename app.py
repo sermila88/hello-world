@@ -63,3 +63,14 @@ def query():
     query = request.args.get("q")
     result = process_query(query)
     return result
+
+@app.route("/username")
+def username():
+    return render_template("username.html")
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    input_username = request.form.get("name")
+    return "Hello " + input_username
+
+
