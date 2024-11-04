@@ -74,7 +74,8 @@ def username():
 @app.route("/username/submit", methods=["POST"])
 def submit_username():
     input_username = request.form.get("name")
-    response = requests.get(f"https://api.github.com/users/{input_username}/repos")
+    url = "https://api.github.com/users/" + input_username + "/repos"
+    response = requests.get(url)
     if response.status_code == 200:
         repos = response.json()
         for repo in repos:
