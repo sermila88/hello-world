@@ -88,5 +88,3 @@ def submit_username():
             data["updated_at"] = updated_at
         return render_template("repos.html", data=data)
     return "error"
-
-
