@@ -6,3 +6,6 @@ Jinja2==3.1.4
 MarkupSafe==3.0.1
 Werkzeug==3.0.4
 Pytest==8.3.3
+requests==2.32.3
+sympy==1.13.3
+

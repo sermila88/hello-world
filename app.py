@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import re
 from sympy import isprime
+import requests
 
 app = Flask(__name__)
 
@@ -68,9 +69,16 @@ def query():
 @app.route("/username")
 def username():
     return render_template("username.html")
-
+    
 
 @app.route("/username/submit", methods=["POST"])
 def submit_username():
     input_username = request.form.get("name")
-    return "Hello " + input_username
+    response = requests.get(f"https://api.github.com/users/{input_username}/repos")
+    if response.status_code == 200:
+        repos = response.json() # data returned is a list of ‘repository’ entities
+        for repo in repos:
+            print(repo["full_name"])
+    return repos
+    
+
