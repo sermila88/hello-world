@@ -71,6 +71,6 @@ def username():
 
 
 @app.route("/username/submit", methods=["POST"])
-def submit():
+def submit_username():
     input_username = request.form.get("name")
     return "Hello " + input_username
