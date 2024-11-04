@@ -80,4 +80,5 @@ def submit_username():
         repos = response.json()
         for repo in repos:
             print(repo["full_name"])
-    return repos
+        return repos
+    return "error"
