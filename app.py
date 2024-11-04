@@ -70,7 +70,7 @@ def username():
     return render_template("username.html")
 
 
-@app.route("/submit", methods=["POST"])
+@app.route("/username/submit", methods=["POST"])
 def submit():
     input_username = request.form.get("name")
     return "Hello " + input_username
