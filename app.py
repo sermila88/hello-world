@@ -77,13 +77,32 @@ def submit_username():
     url = "https://api.github.com/users/" + input_username + "/repos"
 
     data = []
+    commit_data = []
 
     response = requests.get(url)
     if response.status_code == 200:
         repos = response.json()
         for repo in repos:
             fullname = repo["full_name"]
-            updated_at = repo["updated_at"]
-            data.append({"fullname": fullname, "updated_at": updated_at})
+            commit_url = "https://api.github.com/repos/" + fullname + "/commits"
+            commit_response = requests.get(commit_url)
+            if commit_response.status_code == 200:
+                commits = commit_response.json()
+                for commit in commits:
+                    commit_hash = commit["sha"]
+                    author = commit["commit"]["committer"]["name"]
+                    date = commit["commit"]["committer"]["date"]
+                    message = commit["commit"]["message"]
+                    commit_data.append(
+                        {
+                            "commit_hash": commit_hash,
+                            "author": author,
+                            "date": date,
+                            "message": message,
+                        }
+                    )
+            else:
+                return "Error fetching the commit data from the API"
+        data.append({"fullname": fullname, "commits": commit_data})
         return render_template("repos.html", data=data)
-    return "error"
+    return "Error fetching the repo data from the API"

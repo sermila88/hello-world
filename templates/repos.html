@@ -6,18 +6,25 @@ table, th, td {
 </style>
 
 <body>
-    <h1>User Data Table</h1>
+  <h1>User Data Table</h1>
+  {% for row in data %}}
+  <h2>{{ row.fullname }}</h2>
     <table>
         <tr>
-            <th>Full name</th>
-            <th>Date Last Updated</th>
+            <th>Commit Hash</th>
+            <th>Author</th>
+	    <th>Date</th>
+	    <th>Message</th>
         </tr>
-        {% for row in data %}
+        {% for commit in row.commits %}
         <tr>
-            <td>{{ row.fullname }}</td>
-            <td>{{ row.updated_at }}</td>
+            <td>{{ commit.commit_hash }}</td>
+            <td>{{ commit.author }}</td>
+	    <td>{{ commit.date }}</td>
+	    <td>{{ commit.message }}</td>
         </tr>
         {% endfor %}
     </table>
+   {% endfor %}
 </body>
 </html>
