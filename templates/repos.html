@@ -6,8 +6,8 @@
     <body>
     <h1>User Data Table</h1>
     {% for row in data %}
-        <h2> REPO: {{ row.fullname }} </h2>
-        <h1>Languages</h1>
+        <h2> Repo: {{ row.fullname }} </h2>
+        <h3>Languages</h3>
         <table style="text-align: center">
             <tr>
                 <th>Language</th>
@@ -18,7 +18,7 @@
                 </tr>
             {% endfor %}
         </table>
-        <h1>Commits</h1>
+        <h3>Commits</h3>
         <table>
             <tr>
                 <th>Commit Hash</th>
