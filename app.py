@@ -83,7 +83,8 @@ def submit_username():
         repos = response.json()
         for repo in repos:
             fullname = repo["full_name"]
-            languages_url = "https://api.github.com/repos/" + fullname + "/languages"
+            url_stem = "https://api.github.com/repos/"
+            languages_url = url_stem + fullname + "/languages"
             languages_commits = requests.get(languages_url)
             if languages_commits.status_code == 200:
                 languages_response = languages_commits.json()
@@ -91,7 +92,7 @@ def submit_username():
                     languages_data.append(language)
             else:
                 return "Error fetching languages"
-            commit_url = "https://api.github.com/repos/" + fullname + "/commits"
+            commit_url = url_stem + fullname + "/commits"
             commit_response = requests.get(commit_url)
             if commit_response.status_code == 200:
                 commits = commit_response.json()
