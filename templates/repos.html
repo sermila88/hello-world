@@ -1,30 +1,40 @@
 <html>
-<style>
-table, th, td {
-  border:1px solid black;
-}
-</style>
-
-<body>
-  <h1>User Data Table</h1>
-  {% for row in data %}}
-  <h2>{{ row.fullname }}</h2>
-    <table>
-        <tr>
-            <th>Commit Hash</th>
-            <th>Author</th>
-	    <th>Date</th>
-	    <th>Message</th>
-        </tr>
-        {% for commit in row.commits %}
-        <tr>
-            <td>{{ commit.commit_hash }}</td>
-            <td>{{ commit.author }}</td>
-	    <td>{{ commit.date }}</td>
-	    <td>{{ commit.message }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-   {% endfor %}
-</body>
+    <head>
+        <title>User Data Table</title>
+        <link rel="stylesheet" href="../static/css/styles.css">
+    </head>
+    <body>
+    <h1>User Data Table</h1>
+    {% for row in data %}
+        <h2> REPO: {{ row.fullname }} </h2>
+        <h1>Languages</h1>
+        <table style="text-align: center">
+            <tr>
+                <th>Language</th>
+            </tr>
+            {% for language in row.languages %}
+                <tr>
+                    <td> {{ language }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <h1>Commits</h1>
+        <table>
+            <tr>
+                <th>Commit Hash</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Message</th>
+            </tr>
+            {% for commit in row.commits %}
+                <tr>
+                    <td> {{ commit.commit_hash }} </td>
+                    <td> {{ commit.author }} </td>
+                    <td> {{ commit.date }} </td>
+                    <td> {{ commit.message }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+    </body>
 </html>

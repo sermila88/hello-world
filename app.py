@@ -75,15 +75,22 @@ def username():
 def submit_username():
     input_username = request.form.get("name")
     url = "https://api.github.com/users/" + input_username + "/repos"
-
     data = []
     commit_data = []
-
+    languages_data = []
     response = requests.get(url)
     if response.status_code == 200:
         repos = response.json()
         for repo in repos:
             fullname = repo["full_name"]
+            languages_url = "https://api.github.com/repos/" + fullname + "/languages"
+            languages_commits = requests.get(languages_url)
+            if languages_commits.status_code == 200:
+                languages_response = languages_commits.json()
+                for language in languages_response:
+                    languages_data.append(language)
+            else:
+                return "Error fetching languages"
             commit_url = "https://api.github.com/repos/" + fullname + "/commits"
             commit_response = requests.get(commit_url)
             if commit_response.status_code == 200:
@@ -103,6 +110,13 @@ def submit_username():
                     )
             else:
                 return "Error fetching the commit data from the API"
-        data.append({"fullname": fullname, "commits": commit_data})
+            data.append(
+                {
+                    "fullname": fullname,
+                    "commits": commit_data,
+                    "languages": languages_data,
+                }
+            )
         return render_template("repos.html", data=data)
-    return "Error fetching the repo data from the API"
+    else:
+        return "Error fetching the repo data from the API"
