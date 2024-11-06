@@ -76,12 +76,12 @@ def submit_username():
     input_username = request.form.get("name")
     url = "https://api.github.com/users/" + input_username + "/repos"
     data = []
-    commit_data = []
-    languages_data = []
     response = requests.get(url)
     if response.status_code == 200:
         repos = response.json()
         for repo in repos:
+            commit_data = []
+            languages_data = []
             fullname = repo["full_name"]
             url_stem = "https://api.github.com/repos/"
             languages_url = url_stem + fullname + "/languages"
