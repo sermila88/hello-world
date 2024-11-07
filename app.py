@@ -85,9 +85,9 @@ def submit_username():
             fullname = repo["full_name"]
             url_stem = "https://api.github.com/repos/"
             languages_url = url_stem + fullname + "/languages"
-            languages_commits = requests.get(languages_url)
-            if languages_commits.status_code == 200:
-                languages_response = languages_commits.json()
+            languages_response = requests.get(languages_url)
+            if languages_response.status_code == 200:
+                languages_response = languages_response.json()
                 for language in languages_response:
                     languages_data.append(language)
             else:
